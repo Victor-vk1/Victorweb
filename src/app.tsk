@@ -1,0 +1,217 @@
+import { Code2, Github, Linkedin, Mail, ExternalLink, Zap, Shield, Rocket, Users } from 'lucide-react';
+import { useState } from 'react';
+
+export default function App() {
+  const [hoveredProject, setHoveredProject] = useState<number | null>(null);
+
+  const projects = [
+    {
+      title: 'DeFi Protocol Suite',
+      description: 'Advanced decentralized finance protocol with cross-chain functionality',
+      tags: ['Solidity', 'Web3', 'Smart Contracts'],
+      link: '#'
+    },
+    {
+      title: 'NFT Marketplace',
+      description: 'Scalable NFT trading platform with real-time price feeds',
+      tags: ['React', 'Web3.js', 'Ethereum'],
+      link: '#'
+    },
+    {
+      title: 'DAO Governance',
+      description: 'Decentralized autonomous organization governance framework',
+      tags: ['Solidity', 'Vue', 'Web3'],
+      link: '#'
+    },
+    {
+      title: 'Crypto Wallet',
+      description: 'Secure multi-chain crypto wallet with staking support',
+      tags: ['TypeScript', 'Web3', 'Security'],
+      link: '#'
+    }
+  ];
+
+  const skills = [
+    { icon: Code2, label: 'Smart Contracts', items: ['Solidity', 'Rust', 'Move'] },
+    { icon: Shield, label: 'Security', items: ['Auditing', 'Testing', 'Best Practices'] },
+    { icon: Rocket, label: 'Blockchain', items: ['Ethereum', 'Polygon', 'Solana'] },
+    { icon: Users, label: 'Frontend', items: ['React', 'Web3.js', 'TypeScript'] }
+  ];
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white">
+      <div className="fixed inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-purple-600 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-cyan-600 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse" style={{ animationDelay: '2s' }}></div>
+      </div>
+
+      <div className="relative">
+        <nav className="glass-effect backdrop-blur-md sticky top-0 z-50 border-b border-purple-500/20">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <div className="flex items-center gap-2">
+              <Zap className="w-8 h-8 text-purple-400" />
+              <span className="text-xl font-bold gradient-text">Web3.Dev</span>
+            </div>
+            <div className="hidden sm:flex gap-6">
+              <a href="#about" className="hover:text-purple-400 transition-colors">About</a>
+              <a href="#projects" className="hover:text-purple-400 transition-colors">Projects</a>
+              <a href="#skills" className="hover:text-purple-400 transition-colors">Skills</a>
+              <a href="#contact" className="hover:text-purple-400 transition-colors">Contact</a>
+            </div>
+          </div>
+        </nav>
+
+        <header className="relative pt-20 pb-32 px-4 sm:px-6 lg:px-8">
+          <div className="max-w-6xl mx-auto text-center">
+            <div className="slide-in mb-6">
+              <h1 className="text-5xl sm:text-7xl font-bold mb-4 gradient-text glow">
+                Web3 Developer
+              </h1>
+              <p className="text-xl sm:text-2xl text-gray-300 mb-8">
+                Building the future of decentralized applications
+              </p>
+            </div>
+
+            <div className="flex flex-col sm:flex-row gap-4 justify-center fade-in" style={{ animationDelay: '0.3s' }}>
+              <a href="#projects" className="px-8 py-3 bg-gradient-to-r from-purple-600 to-cyan-600 rounded-lg font-semibold hover-glow pulse-glow transition-all hover:scale-105">
+                View My Work
+              </a>
+              <a href="#contact" className="px-8 py-3 border-2 border-purple-400 rounded-lg font-semibold hover:bg-purple-400/10 transition-all hover:scale-105">
+                Get In Touch
+              </a>
+            </div>
+          </div>
+        </header>
+
+        <section id="about" className="relative py-20 px-4 sm:px-6 lg:px-8">
+          <div className="max-w-6xl mx-auto">
+            <h2 className="text-4xl font-bold mb-12 text-center gradient-text">About Me</h2>
+            <div className="glass-effect glow-border rounded-xl p-8 sm:p-12 slide-in">
+              <p className="text-lg text-gray-300 leading-relaxed mb-6">
+                I'm a passionate Web3 developer with deep expertise in smart contract development, decentralized application architecture, and blockchain integration. With years of experience building secure and scalable DApps, I combine technical excellence with innovative thinking to solve complex problems in the crypto space.
+              </p>
+              <p className="text-lg text-gray-300 leading-relaxed">
+                My focus is on creating seamless user experiences while maintaining the highest security standards. I'm constantly learning new technologies and contributing to the Web3 ecosystem.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section id="projects" className="relative py-20 px-4 sm:px-6 lg:px-8">
+          <div className="max-w-6xl mx-auto">
+            <h2 className="text-4xl font-bold mb-12 text-center gradient-text">Featured Projects</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {projects.map((project, index) => (
+                <div
+                  key={index}
+                  onMouseEnter={() => setHoveredProject(index)}
+                  onMouseLeave={() => setHoveredProject(null)}
+                  className="glass-effect glow-border rounded-xl p-6 hover-glow transition-all hover:scale-105 group cursor-pointer"
+                  style={{
+                    animation: `slideIn 0.5s ease-out ${index * 0.1}s both`
+                  }}
+                >
+                  <div className="flex items-start justify-between mb-4">
+                    <h3 className="text-xl font-semibold text-purple-300 group-hover:text-cyan-300 transition-colors">
+                      {project.title}
+                    </h3>
+                    <ExternalLink className="w-5 h-5 text-gray-400 group-hover:text-purple-400 transition-colors" />
+                  </div>
+                  <p className="text-gray-400 mb-4">
+                    {project.description}
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    {project.tags.map((tag, tagIndex) => (
+                      <span
+                        key={tagIndex}
+                        className="px-3 py-1 bg-purple-500/20 text-purple-300 rounded-full text-sm border border-purple-500/30"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="skills" className="relative py-20 px-4 sm:px-6 lg:px-8">
+          <div className="max-w-6xl mx-auto">
+            <h2 className="text-4xl font-bold mb-12 text-center gradient-text">Skills & Expertise</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {skills.map((skill, index) => {
+                const Icon = skill.icon;
+                return (
+                  <div
+                    key={index}
+                    className="glass-effect glow-border rounded-xl p-6 hover-glow transition-all hover:scale-105 text-center group"
+                    style={{
+                      animation: `slideIn 0.5s ease-out ${index * 0.1}s both`
+                    }}
+                  >
+                    <Icon className="w-12 h-12 mx-auto mb-4 text-purple-400 group-hover:text-cyan-400 transition-colors" />
+                    <h3 className="font-semibold mb-3 text-purple-300 group-hover:text-cyan-300 transition-colors">
+                      {skill.label}
+                    </h3>
+                    <ul className="space-y-2">
+                      {skill.items.map((item, itemIndex) => (
+                        <li key={itemIndex} className="text-sm text-gray-400">
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+
+        <section id="contact" className="relative py-20 px-4 sm:px-6 lg:px-8">
+          <div className="max-w-6xl mx-auto text-center">
+            <h2 className="text-4xl font-bold mb-8 gradient-text">Get In Touch</h2>
+            <p className="text-gray-300 mb-12 text-lg">
+              Have a project in mind? Let's build something amazing together.
+            </p>
+
+            <div className="flex flex-col sm:flex-row justify-center gap-6 mb-12">
+              <a
+                href="mailto:hello@web3dev.com"
+                className="glass-effect glow-border rounded-lg px-6 py-3 hover-glow transition-all hover:scale-105 inline-flex items-center justify-center gap-2"
+              >
+                <Mail className="w-5 h-5" />
+                <span>Email Me</span>
+              </a>
+              <a
+                href="https://github.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="glass-effect glow-border rounded-lg px-6 py-3 hover-glow transition-all hover:scale-105 inline-flex items-center justify-center gap-2"
+              >
+                <Github className="w-5 h-5" />
+                <span>GitHub</span>
+              </a>
+              <a
+                href="https://linkedin.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="glass-effect glow-border rounded-lg px-6 py-3 hover-glow transition-all hover:scale-105 inline-flex items-center justify-center gap-2"
+              >
+                <Linkedin className="w-5 h-5" />
+                <span>LinkedIn</span>
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <footer className="relative border-t border-purple-500/20 py-8 px-4 sm:px-6 lg:px-8">
+          <div className="max-w-6xl mx-auto text-center text-gray-400">
+            <p>© 2024 Web3 Developer. Built with React & Tailwind CSS.</p>
+          </div>
+        </footer>
+      </div>
+    </div>
+  );
+}
+
